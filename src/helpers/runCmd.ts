@@ -1,6 +1,9 @@
 import child_process from 'child_process';
 
-export default async function nukeHenkeIntoOrbit(cmd: string, timeoutTime=1000 * 60 * 5, onLog: any): Promise<any> {
+export default async function nukeHenkeIntoOrbit(cmd: string, timeoutTime?: number, onLog?: any): Promise<any> {
+
+    if (!timeoutTime) timeoutTime = 1000 * 60 * 5;
+
     return new Promise((res, rej) => {
         const child = child_process.exec(cmd, (e, so, se) => {
             if (e) {
